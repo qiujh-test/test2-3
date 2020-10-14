@@ -1,10 +1,12 @@
 resource "huaweicloud_compute_instance_v2" "ecs_example" {
-    availability_zone = "cn-north-4a"
-    name = "create_ecs"
-    image_id = "01225754-3b48-47e4-8611-13663117b886"
-    flavor_name = var.flavor_name
+  region = var.region
+  availability_zone = var.az
+  name            = var.instance_name
+  image_id      = var.image
+  flavor_name     = var.flavor_name
+  security_groups = ["default"]
 
-    network {
-    	uuid = huaweicloud_vpc_subnet_v1.subnet_v1.id
-    }
+  network {
+	  uuid = huaweicloud_vpc_subnet_v1.subnet_v1.id
+  }
 }
